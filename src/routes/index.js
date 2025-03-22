@@ -7,7 +7,6 @@ const router = Router();
 router.use(
   endPoints.USER,
   (req, res, next) => {
-    console.log("arrived here");
     next();
   },
   userRouter
