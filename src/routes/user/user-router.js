@@ -15,13 +15,6 @@ userRouter.get(
   getAllUser
 );
 
-userRouter.put(endPoints.BASE, (req, res) => {
-  res.send("success");
-});
 
-userRouter.delete(endPoints.BASE, (req, res) => {
-  console.log("user delete request hit");
-  res.send("success");
-});
 
 module.exports = { userRouter };
