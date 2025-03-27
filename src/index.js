@@ -1,19 +1,15 @@
 const express = require("express");
 const { endPoints } = require("./constants");
 const { router } = require("./routes/index.js");
-const { connectWithDatabase } = require("./config/sequlize-config.js");
+const { errorMiddleware } = require("./middlewares/error.js");
 const app = express();
 
 app.use(express.json());
-connectWithDatabase();
-app.use(
-  endPoints.ROOT,
-  (req, res, next) => {
-    next();
-  },
-  router
-);
+app.use(endPoints.ROOT, router);
 
+app.use((error, req, res, next) => {
+  errorMiddleware({ error, req, res });
+});
 app.listen(4870, () => {
   console.log("server is running on port 4870");
 });

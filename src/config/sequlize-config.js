@@ -1,19 +1,21 @@
-const { checkAndCreateDatabase } = require("../utils/dbInit.js");
+const { checkAndCreateDatabase } = require("../utils/db-utils.js");
 const { Sequelize } = require("sequelize");
 const config = require("../db/config/config.js");
-const string = require("../constants");
 
-const sequelizeConfig = new Sequelize({
+const sequelize = new Sequelize({
   ...config[process.env.NODE_ENV],
   logging: false,
+  define: {
+    freezeTableName: true,
+  },
 });
 
 // Creates connection to postgres database.
 const connectWithDatabase = async () => {
   try {
     await checkAndCreateDatabase();
-    await sequelizeConfig.authenticate();
-    await sequelizeConfig.sync();
+    await sequelize.authenticate();
+    await sequelize.sync({ force: false, alter: true });
     console.log("Database connected successfully!");
     // logger(messages.DB.CONNECTION_DONE, strings.LOGGER.LEVELS.INFO);
   } catch (error) {
@@ -22,4 +24,4 @@ const connectWithDatabase = async () => {
   }
 };
 
-module.exports = { sequelizeConfig, connectWithDatabase };
+module.exports = { sequelize, connectWithDatabase };

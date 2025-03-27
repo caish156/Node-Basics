@@ -1,20 +1,21 @@
 const { Router } = require("express");
-const { endPoints } = require("../../constants");
+const { endPoints, strings } = require("../../constants");
+const { loginUser, getAllUser } = require("../../controller");
+const { authenticate } = require("../../middlewares/auth");
 
 const userRouter = Router();
 
-userRouter.get(endPoints.BASE, (req, res) => {
-  console.log("user get request hit");
-  res.send("success");
-});
+// Login Route For user
 
-userRouter.post(endPoints.BASE, (req, res) => {
-  console.log("user post request hit");
-  res.send("success");
-});
+userRouter.post(endPoints.LOGIN, loginUser);
+
+userRouter.get(
+  endPoints.BASE,
+  authenticate([strings.ROLES.ADMIN, strings.ROLES.SUPER_ADMIN]),
+  getAllUser
+);
 
 userRouter.put(endPoints.BASE, (req, res) => {
-  console.log("user put request hit");
   res.send("success");
 });
 

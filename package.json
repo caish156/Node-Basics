@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js",
+    "dev": "node src/index.js",
+    "db:migrate": "npx sequelize-cli db:migrate --migrations-path src/db/migrations",
+    "db:seed": "npx sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -17,12 +21,14 @@
   },
   "homepage": "https://github.com/caish156/Node-Basics#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "loadash": "^1.0.0",
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.9",
     "pg": "^8.14.1",
     "pg-promise": "^11.13.0",
     "sequelize": "^6.37.6",
@@ -30,6 +36,7 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "nodemon": "^3.1.9",
     "prettier": "^3.5.3"
   }
 }
