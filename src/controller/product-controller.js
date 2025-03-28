@@ -1,5 +1,5 @@
 const { messages, httpCodes } = require("../constants");
-const { addProductService } = require("../services/product-service");
+const { addProductService, getAllProductService } = require("../services");
 const { sendSuccessResponse } = require("../utils");
 
 module.exports.addProduct = async (req, res, next) => {
@@ -13,16 +13,18 @@ module.exports.addProduct = async (req, res, next) => {
   }
 };
 
-module.exports.getAllProduct = async (req, res, next) => {
+module.exports.getAllProducts = async (req, res, next) => {
   try {
-    const userData = await getAllProductService(req);
+    const productData = await getAllProductService(req);
+    console.log(productData)
     return sendSuccessResponse(
       res,
-      messages.USER.DATA_FETCHED,
-      userData,
+      messages.PRODUCT.DATA_FETCHED,
+      productData,
       httpCodes.SUCCESS
     );
   } catch (error) {
     next(error);
   }
 };
+

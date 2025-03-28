@@ -1,12 +1,13 @@
 const { Router } = require("express");
 const { endPoints, strings } = require("../../constants");
-const { addProduct } = require("../../controller/product-controller");
+const { addProduct, getAllProducts } = require("../../controller/product-controller");
 
 const productRouter = Router();
 
 // Login Route For user
 
 productRouter.post(endPoints.ADD, addProduct);
+productRouter.get(endPoints.BASE, getAllProducts);
 
 // productRouter.get(
 //   endPoints.BASE,

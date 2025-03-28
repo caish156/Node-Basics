@@ -16,6 +16,8 @@ module.exports.messages = {
   PRODUCT: {
     ADDED: "New Product added",
     ERROR: "Error in Product Section",
+    NOT_FOUND:'No Product available',
+    DATA_FETCHED:'Product data fetched'
   },
 
   APP: {

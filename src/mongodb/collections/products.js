@@ -9,7 +9,7 @@ module.exports.createProduct = async (productData) => {
     throw new CustomeError(error.message, httpCodes.SERVICE_UNAVAILABLE);
   }
 };
-module.exports.getProducts = async (req, res) => {
+module.exports.getAllProducts = async (req, res) => {
   try {
     const products = await mdb.Product.find(); // Like Sequelize.findAll()
     return products;
